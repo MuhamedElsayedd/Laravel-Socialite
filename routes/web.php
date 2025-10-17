@@ -21,13 +21,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__ . '/auth.php';
 
 
-Route::prefix('github')->name('socialite.')->controller(SocialiteController::class)->group(function () {
-    Route::get('/login', 'login')->name('login');
-    Route::get('/redirect', 'redirect')->name('redirect');
-});
-
-
-Route::prefix('dribbble')->name('dribbble.')->controller(SocialiteController::class)->group(function () {
-    Route::get('/dribbble_login', 'dribbble_login')->name('dribbble_login');
-    Route::get('/redirect', 'dribbble_redirect')->name('dribbble_redirect');
+Route::name('socialite.')->controller(SocialiteController::class)->group(function () {
+    Route::get('{provider}/login', 'login')->name('login');
+    Route::get('{provider}/redirect', 'redirect')->name('redirect');
 });

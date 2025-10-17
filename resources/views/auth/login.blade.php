@@ -46,12 +46,12 @@
 
         <div class="text-center" style="margin: 20px;">
             <a class="'inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900
-             focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150'" href="{{route('socialite.login')}}">Login With Github</a>
+             focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150'" href="{{route('socialite.login' , [ 'provider' =>'github'])}}">Login With Github</a>
         </div>
 
         <div class="text-center" style="margin: 20px;">
             <a class="'inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900
-             focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150'" href="{{route('dribbble.dribbble_login')}}">Login With Dribbble</a>
+             focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150'" href="{{route('socialite.login' , [ 'provider' =>'dribbble'])}}">Login With Dribbble</a>
         </div>
     </form>
 </x-guest-layout>

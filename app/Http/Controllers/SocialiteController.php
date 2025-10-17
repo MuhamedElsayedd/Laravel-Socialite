@@ -9,41 +9,17 @@ use Illuminate\Support\Facades\Auth;
 
 class SocialiteController extends Controller
 {
-    public function login()
+    public function login($provider)
     {
-        return Socialite::driver('github')->redirect();
+        return Socialite::driver($provider)->redirect();
     }
 
-    public function redirect()
+    public function redirect($provider)
     {
-        $SocialiteUser = Socialite::driver('github')->user();
+        $SocialiteUser = Socialite::driver($provider)->user();
         $user = User::updateOrCreate([
+            'provider' => $provider,
             'provider_id' => $SocialiteUser->getId(),
-        ], [
-            'name' => $SocialiteUser->getName(),
-            'email' => $SocialiteUser->getEmail(),
-
-        ]);
-
-
-        // auth User
-        Auth::login($user, true);
-
-        // redirect to dashboard
-        return to_route('dashboard');
-    }
-
-
-    public function dribbble_login()
-    {
-        return Socialite::driver('dribbble')->redirect();
-    }
-
-    public function dribbble_redirect()
-    {
-        $SocialiteUser = Socialite::driver('dribbble')->user();
-        $user = User::updateOrCreate([
-            'dribbble_id' => $SocialiteUser->getId(),
         ], [
             'name' => $SocialiteUser->getName(),
             'email' => $SocialiteUser->getEmail(),
