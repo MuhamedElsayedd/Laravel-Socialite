@@ -32,4 +32,29 @@ class SocialiteController extends Controller
         // redirect to dashboard
         return to_route('dashboard');
     }
+
+
+    public function dribbble_login()
+    {
+        return Socialite::driver('dribbble')->redirect();
+    }
+
+    public function dribbble_redirect()
+    {
+        $SocialiteUser = Socialite::driver('dribbble')->user();
+        $user = User::updateOrCreate([
+            'dribbble_id' => $SocialiteUser->getId(),
+        ], [
+            'name' => $SocialiteUser->getName(),
+            'email' => $SocialiteUser->getEmail(),
+
+        ]);
+
+
+        // auth User
+        Auth::login($user, true);
+
+        // redirect to dashboard
+        return to_route('dashboard');
+    }
 }
